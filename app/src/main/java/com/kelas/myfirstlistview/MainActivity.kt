@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -39,6 +40,14 @@ class MainActivity : ComponentActivity() {
             var dtAkhir = Integer.parseInt(data.get(data.size-1)) + 1
             data.add("$dtAkhir")
             lvAdapter.notifyDataSetChanged()
+        }
+
+        _lv1.setOnItemClickListener { parent, view, position, id ->
+            Toast.makeText(
+                this,
+                data[position],
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
