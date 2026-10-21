@@ -1,6 +1,8 @@
 package com.kelas.myfirstlistview
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,32 +18,20 @@ import com.kelas.myfirstlistview.ui.theme.MyFirstListViewTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MyFirstListViewTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-    }
-}
+        setContentView(R.layout.activity_main)
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        var data = mutableListOf<String>()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyFirstListViewTheme {
-        Greeting("Android")
+        data.addAll(listOf("1","2","3","4","5"))
+
+        val lvAdapter : ArrayAdapter<String> = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            data
+        )
+
+        val _lv1 = findViewById<ListView>(R.id.lv1)
+        _lv1.adapter = lvAdapter
+
     }
 }
